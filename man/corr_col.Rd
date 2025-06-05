@@ -4,12 +4,18 @@
 \alias{corr_col}
 \title{Correlations of Columns}
 \usage{
-corr_col(x, y)
+corr_col(
+  x,
+  y,
+  options = list(x_join = NULL, y_join = NULL, x_labl = NULL, y_labl = NULL)
+)
 }
 \arguments{
 \item{x}{A data.frame with a column containing values shared with y in the first position}
 
 \item{y}{A data.frame with a column containing values shared with x in the first position}
+
+\item{options}{A named list of options to pass to the function.}
 }
 \value{
 A named list of data.frames containing results of correlations between all pairs of numeric columns in x and y

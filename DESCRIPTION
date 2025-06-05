@@ -1,6 +1,6 @@
 Package: coracle
 Title: Correlations for Columns of Data
-Version: 3.0.2
+Version: 3.1.0
 Authors@R: 
     person("Ray", "Krajci", , "rdk54@case.edu", role = c("aut", "cre"))
 Description: Functions for correlation.
@@ -14,4 +14,6 @@ RoxygenNote: 7.3.2
 Imports: 
     dplyr,
     purrr,
-    tidyr
+    rlang,
+    tidyr,
+    utils
