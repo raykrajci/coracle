@@ -1,34 +1,37 @@
 set.seed(123)
 
 n <- 26
+p <- 0.25
 
-data1 <- data.frame(
-  index_1 = letters[1:n],
-  up_1 = 1:n,
-  down_1 = n:1,
-  random_1 = runif(n)) |>
-  mutate(constant_1 = 1,
-         nas_1 = NaN) |>
-  rowwise() |>
-  mutate(
-    random_up_1 = rnorm(n = 1, mean = up_1),
-    random_down_1 = rnorm(n = 1, mean = down_1)
-         ) |>
-  ungroup() |>
-  arrange(random_1)
+data_x <- tibble(
+  letters = letters[1:n],
+  LETTERS = LETTERS[1:n],
+  up = 1:n,
+  down = n:1,
+  random = runif(n),
+  random_up = rnorm(n, mean = up),
+  random_down = rnorm(n, mean = down),
+  constant = 1,
+  all_nas = NA_real_
+) |>
+  mutate(across(everything(),
+                \(vec) ifelse(runif(length(vec)) > p, vec, NA),
+                .names = "{.col}_nas")) |>
+  rename_with(\(c) paste(c, "x", sep = "_"))
 
-data2 <- data.frame(
-  index_2 = letters[1:n],
-  up_2 = 1:n,
-  down_2 = n:1,
-  random_2 = runif(n)) |>
-  mutate(constant_2 = 1,
-         nas_2 = NaN) |>
-  rowwise() |>
-  mutate(
-    random_up_2 = rnorm(n = 1, mean = up_2),
-    random_down_2 = rnorm(n = 1, mean = down_2)
-  ) |>
-  ungroup() |>
-  arrange(random_2)
+data_y <- tibble(
+  letters = letters[1:n],
+  LETTERS = LETTERS[1:n],
+  up = 1:n,
+  down = n:1,
+  random = runif(n),
+  random_up = rnorm(n, mean = up),
+  random_down = rnorm(n, mean = down),
+  constant = 1,
+  all_nas = NA_real_
+) |>
+  mutate(across(everything(),
+                \(vec) ifelse(runif(length(vec)) > p, vec, NA),
+                .names = "{.col}_nas")) |>
+  rename_with(\(c) paste(c, "y", sep = "_"))
 
