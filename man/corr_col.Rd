@@ -7,7 +7,8 @@
 corr_col(
   x,
   y,
-  options = list(x_join = NULL, y_join = NULL, x_labl = NULL, y_labl = NULL)
+  options = list(x_join = NULL, y_join = NULL, x_labl = NULL, y_labl = NULL, progress =
+    NULL)
 )
 }
 \arguments{

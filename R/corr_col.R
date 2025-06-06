@@ -11,7 +11,8 @@ corr_col <- function(x,
                      options = list(x_join = NULL,
                                     y_join = NULL,
                                     x_labl = NULL,
-                                    y_labl = NULL)) {
+                                    y_labl = NULL,
+                                    progress = NULL)) {
 
   start_time <- Sys.time()
 
@@ -63,7 +64,8 @@ corr_col <- function(x,
       p = result$p.value
     )
 
-  }) |>
+  },
+  .progress = options[["progress"]] %||% FALSE) |>
     list_rbind()
 
   rm(x)
