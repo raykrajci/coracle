@@ -1,10 +1,14 @@
 #' Correlations of Columns
 #'
-#' @param x A data.frame with a column containing values shared with y in the first position
-#' @param y A data.frame with a column containing values shared with x in the first position
+#' @param x A data frame with a column containing values shared with `y`.
+#' @param y A data frame with a column containing values shared with `x`.
 #' @param options A named list of options to pass to the function.
+#' - `*_join`: A character scalar of a column name in `*` ("x" or "y") to use for joining. Defaults to the first column.
+#' - `*_labl`: A character scalar describing the inputs ("x" or "y")to label the output columns and metadata. Defaults to "x" or "y".
+#' - `progress`: Boolean value to show function progress. Defaults to `FALSE`.
+#' @md
 #'
-#' @returns A named list of data.frames containing results of correlations between all pairs of numeric columns in x and y
+#' @returns A named list of data frames containing results of correlations between all pairs of numeric columns in `x` and `y`.
 #' @export
 corr_col <- function(x,
                      y,
@@ -70,6 +74,7 @@ corr_col <- function(x,
 
   rm(x)
   rm(y)
+  rm(combinations)
 
   if(length(x_skipped_cols) > 0){
     correlations <- bind_rows(
@@ -91,18 +96,18 @@ corr_col <- function(x,
   rho <- correlations |>
     select(x, y, rho) |>
     pivot_wider(names_from = y, values_from = rho) |>
-    filter(!is.na(x)) |>  # Skipped y cols create `NA` x values
+    filter(!is.na(x)) |>  # Skipped y cols create `NA` x values -> delete them
     rename(!!x_labl := x)
 
-  rho$`NA` <- NULL # Skipped x cols create `NA` cols via pivot_wider
+  rho$`NA` <- NULL # Skipped x cols create `NA` cols via pivot_wider -> delete them
 
   p <- correlations |>
     select(x, y, p) |>
     pivot_wider(names_from = y, values_from = p) |>
-    filter(!is.na(x)) |>  # Skipped y cols create `NA` x values
+    filter(!is.na(x)) |>  # Skipped y cols create `NA` x values -> delete them
     rename(!!x_labl := x)
 
-  p$`NA` <- NULL # Skipped x cols create `NA` cols via pivot_wider
+  p$`NA` <- NULL # Skipped x cols create `NA` cols via pivot_wider -> delete them
 
   end_time <- Sys.time()
 

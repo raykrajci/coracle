@@ -12,14 +12,19 @@ corr_col(
 )
 }
 \arguments{
-\item{x}{A data.frame with a column containing values shared with y in the first position}
+\item{x}{A data frame with a column containing values shared with \code{y}.}
 
-\item{y}{A data.frame with a column containing values shared with x in the first position}
+\item{y}{A data frame with a column containing values shared with \code{x}.}
 
-\item{options}{A named list of options to pass to the function.}
+\item{options}{A named list of options to pass to the function.
+\itemize{
+\item \verb{*_join}: A character scalar of a column name in \code{*} ("x" or "y") to use for joining. Defaults to the first column.
+\item \verb{*_labl}: A character scalar describing the inputs ("x" or "y")to label the output columns and metadata. Defaults to "x" or "y".
+\item \code{progress}: Boolean value to show function progress. Defaults to \code{FALSE}.
+}}
 }
 \value{
-A named list of data.frames containing results of correlations between all pairs of numeric columns in x and y
+A named list of data frames containing results of correlations between all pairs of numeric columns in \code{x} and \code{y}.
 }
 \description{
 Correlations of Columns
