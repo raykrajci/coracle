@@ -105,6 +105,58 @@
 ---
 
     Code
+      f(data_x, data_y, list(x_join = "letters_nas_x", y_join = "letters_nas_y"))$rho
+    Output
+      # A tibble: 14 x 15
+         x          up_y down_y random_y random_up_y random_down_y up_nas_y down_nas_y
+         <chr>     <dbl>  <dbl>    <dbl>       <dbl>         <dbl>    <dbl>      <dbl>
+       1 up_x      1     -1      -0.198        0.973        -0.995    1        -1     
+       2 down_x   -1      1       0.198       -0.973         0.995   -1         1     
+       3 random_x  0.181 -0.181   0.308        0.143        -0.148    0.182    -0.0182
+       4 random_~  0.989 -0.989  -0.214        0.956        -0.978    0.991    -0.988 
+       5 random_~ -0.995  0.995   0.220       -0.962         0.989   -0.991     0.988 
+       6 up_nas_x  1     -1      -0.198        0.973        -0.995    1        -1     
+       7 down_na~ -1      1      -0.0667      -0.967         1       -1         1     
+       8 random_~  0.267 -0.267   0.433        0.1          -0.2      0.143     0.0714
+       9 random_~  0.986 -0.986  -0.266        0.944        -0.972    0.988    -0.983 
+      10 random_~ -1      1       0.5         -1             1       -1         1     
+      11 constan~ NA     NA      NA           NA            NA       NA        NA     
+      12 all_nas~ NA     NA      NA           NA            NA       NA        NA     
+      13 constan~ NA     NA      NA           NA            NA       NA        NA     
+      14 all_nas~ NA     NA      NA           NA            NA       NA        NA     
+      # i 7 more variables: random_nas_y <dbl>, random_up_nas_y <dbl>,
+      #   random_down_nas_y <dbl>, constant_y <dbl>, all_nas_y <dbl>,
+      #   constant_nas_y <dbl>, all_nas_nas_y <dbl>
+
+---
+
+    Code
+      f(data_x, data_y, list(x_join = "letters_nas_x", y_join = "letters_nas_y"))$p
+    Output
+      # A tibble: 14 x 15
+         x                 up_y    down_y random_y random_up_y random_down_y  up_nas_y
+         <chr>            <dbl>     <dbl>    <dbl>       <dbl>         <dbl>     <dbl>
+       1 up_x          0         0           0.517     2.62e-8      3.91e-12  0       
+       2 down_x        0         0           0.517     2.62e-8      3.91e-12  0       
+       3 random_x      5.53e- 1  5.53e- 1    0.306     6.42e-1      6.29e- 1  5.93e- 1
+       4 random_up_x   1.75e-10  1.75e-10    0.482     3.37e-7      7.76e- 9  3.76e- 9
+       5 random_down~  3.91e-12  3.91e-12    0.471     1.63e-7      1.75e-10  3.76e- 9
+       6 up_nas_x      0         0           0.517     2.62e-8      3.91e-12  0       
+       7 down_nas_x    0         0           0.865     2.16e-5      0         1.41e-39
+       8 random_nas_x  4.88e- 1  4.88e- 1    0.244     7.98e-1      6.06e- 1  7.60e- 1
+       9 random_up_n~  4.12e- 9  4.12e- 9    0.404     3.93e-6      1.29e- 7  9.31e- 8
+      10 random_down~  0         0           0.207     0            0         1.41e-39
+      11 constant_x   NA        NA          NA        NA           NA        NA       
+      12 all_nas_x    NA        NA          NA        NA           NA        NA       
+      13 constant_na~ NA        NA          NA        NA           NA        NA       
+      14 all_nas_nas~ NA        NA          NA        NA           NA        NA       
+      # i 8 more variables: down_nas_y <dbl>, random_nas_y <dbl>,
+      #   random_up_nas_y <dbl>, random_down_nas_y <dbl>, constant_y <dbl>,
+      #   all_nas_y <dbl>, constant_nas_y <dbl>, all_nas_nas_y <dbl>
+
+---
+
+    Code
       f(data_x, data_x, list(x_labl = "x_vals"))$rho
     Output
       # A tibble: 14 x 15

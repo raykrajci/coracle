@@ -20,16 +20,22 @@ corr_col <- function(x,
 
   start_time <- Sys.time()
 
-  x_join <- options[["x_join"]] %||% 1
-  y_join <- options[["y_join"]] %||% 1
+  x_join <- options[["x_join"]] %||% names(x)[[1]]
+  y_join <- options[["y_join"]] %||% names(y)[[1]]
+
+  shared_vals <- intersect(x[[x_join]], y[[y_join]]) |> discard(is.na)
 
   x <- x |>
-    filter(x[[x_join]] %in% y[[y_join]]) |>
-    arrange(x[[x_join]])
+    filter(!!sym(x_join) %in% shared_vals)
 
-  y <- y %>%
-    filter(y[[y_join]] %in% x[[x_join]]) |>
-    arrange(y[[y_join]])
+  y <- y |>
+    filter(!!sym(y_join) %in% shared_vals)
+
+  x <- x |>
+    arrange(!!sym(x_join))
+
+  y <- y |>
+    arrange(!!sym(y_join))
 
   x <- x |>
     select(where(is.numeric))
