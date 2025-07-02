@@ -17,7 +17,8 @@ data_x <- tibble(
   mutate(across(everything(),
                 \(vec) ifelse(runif(length(vec)) > p, vec, NA),
                 .names = "{.col}_nas")) |>
-  rename_with(\(c) paste(c, "x", sep = "_"))
+  rename_with(\(c) paste(c, "x", sep = "_")) |>
+  slice_sample(prop = 1)
 
 data_y <- tibble(
   letters = letters[1:n],
@@ -33,5 +34,6 @@ data_y <- tibble(
   mutate(across(everything(),
                 \(vec) ifelse(runif(length(vec)) > p, vec, NA),
                 .names = "{.col}_nas")) |>
-  rename_with(\(c) paste(c, "y", sep = "_"))
+  rename_with(\(c) paste(c, "y", sep = "_")) |>
+  slice_sample(prop = 1)
 

@@ -32,10 +32,10 @@ corr_col <- function(x,
     filter(!!sym(y_join) %in% shared_vals)
 
   x <- x |>
-    arrange(!!sym(x_join))
+    arrange(across(all_of(x_join)))
 
   y <- y |>
-    arrange(!!sym(y_join))
+    arrange(across(all_of(y_join)))
 
   x <- x |>
     select(where(is.numeric))
